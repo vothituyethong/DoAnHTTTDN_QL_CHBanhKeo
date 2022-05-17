@@ -549,17 +549,23 @@ public class Frm_LapPX extends javax.swing.JFrame {
                 if(tf2.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!","Thông báo",0);                
                 else{
                     int so_luong=Integer.parseInt(tf2.getText());
-                    ctpxDTO.setSO_LUONG(so_luong);
-                    ChiTietPX_BLL ctpxBLL=new ChiTietPX_BLL();
-                    tongTien+=getCTPX2(dtm,stt);
-                    stt++;
-                    Locale locale = new Locale("en", "EN");
-                    String pattern2 = "###,###.##";
-                    DecimalFormat decimalFormat = (DecimalFormat)NumberFormat
-                        .getNumberInstance(locale);
-                    decimalFormat.applyPattern(pattern2); 
-                    lTien.setText(decimalFormat.format(tongTien));
-                    tf1.setText("");
+                    int so_luongDB = hangBLL.searchHangMa(hangDTO).get(0).getSO_LUONG();
+                    if(so_luong > so_luongDB)
+                        JOptionPane.showMessageDialog(null, "Vượt quá số lượng còn lại","Thông báo",0);
+                    else{
+                        ctpxDTO.setSO_LUONG(so_luong);
+                        ChiTietPX_BLL ctpxBLL=new ChiTietPX_BLL();
+                        tongTien+=getCTPX2(dtm,stt);
+                        stt++;
+                        Locale locale = new Locale("en", "EN");
+                        String pattern2 = "###,###.##";
+                        DecimalFormat decimalFormat = (DecimalFormat)NumberFormat
+                            .getNumberInstance(locale);
+                        decimalFormat.applyPattern(pattern2); 
+                        lTien.setText(decimalFormat.format(tongTien));
+                        tf1.setText("");
+                    }
+                    
                 }
                 
             }

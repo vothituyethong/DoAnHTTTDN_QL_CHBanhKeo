@@ -482,7 +482,7 @@ public class Frm_LapHD extends javax.swing.JFrame {
                         hangDTO.setMA_HANG(tbxuat.getModel().getValueAt(i, 1).toString());
                         HangHoaBLL hangBLL = new HangHoaBLL();
                         int num = Integer.parseInt(tbxuat.getModel().getValueAt(i, 4).toString());
-                        if (hangBLL.updateSL(hangDTO, num) == 0) {
+                        if (hangBLL.updateSL(hangDTO, -num) == 0) {
                             JOptionPane.showMessageDialog(null, "Cập nhật số lượng hàng còn lại thất bại!", "Thông báo", 0);
                         }
                     }
@@ -559,17 +559,23 @@ public class Frm_LapHD extends javax.swing.JFrame {
                 if(tf2.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!","Thông báo",0);                
                 else{
                     int so_luong=Integer.parseInt(tf2.getText());
-                    cthdDTO.setSO_LUONG(so_luong);
-                    ChiTietHD_BLL cthdBLL=new ChiTietHD_BLL();
-                    tongTien+=getCTHD2(dtm,stt);
-                    stt++;
-                    Locale locale = new Locale("en", "EN");
-                    String pattern2 = "###,###.##";
-                    DecimalFormat decimalFormat = (DecimalFormat)NumberFormat
-                        .getNumberInstance(locale);
-                    decimalFormat.applyPattern(pattern2); 
-                    lTien.setText(decimalFormat.format(tongTien));
-                    tf1.setText("");
+                    int so_luongDB = hangBLL.searchHangMa(hangDTO).get(0).getSO_LUONG();
+                    if(so_luong > so_luongDB)
+                        JOptionPane.showMessageDialog(null, "Vượt quá số lượng còn lại","Thông báo",0);
+                    else{
+                        cthdDTO.setSO_LUONG(so_luong);
+                        ChiTietHD_BLL cthdBLL=new ChiTietHD_BLL();
+                        tongTien+=getCTHD2(dtm,stt);
+                        stt++;
+                        Locale locale = new Locale("en", "EN");
+                        String pattern2 = "###,###.##";
+                        DecimalFormat decimalFormat = (DecimalFormat)NumberFormat
+                            .getNumberInstance(locale);
+                        decimalFormat.applyPattern(pattern2); 
+                        lTien.setText(decimalFormat.format(tongTien));
+                        tf1.setText("");
+                    }
+                    
                 }
                 
             }
