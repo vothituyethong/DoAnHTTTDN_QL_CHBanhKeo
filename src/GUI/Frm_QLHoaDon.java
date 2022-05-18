@@ -36,7 +36,6 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
         panel.setBackground(Color.WHITE);
         btn3.setBackground(Color.PINK);
         btn4.setBackground(Color.PINK);
-        btn5.setBackground(Color.PINK);
         btnReport.setBackground(Color.PINK);
     }
 
@@ -62,41 +61,17 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
 
         panel = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tb1 = new javax.swing.JTable();
         btnReport = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         cbMaHD = new javax.swing.JComboBox<>();
-        btn5 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb1 = new javax.swing.JTable();
 
         lblTitle.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         lblTitle.setText("QUẢN LÝ HÓA ĐƠN");
-
-        tb1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        tb1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "STT", "MÃ HĐ", "NGÀY XUẤT", "NHÂN VIÊN", "TÊN KHÁCH HÀNG", "TỔNG TIỀN"
-            }
-        ));
-        tb1.setPreferredSize(new java.awt.Dimension(450, 198));
-        tb1.setRowHeight(30);
-        jScrollPane1.setViewportView(tb1);
 
         btnReport.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnReport.setText("IN HÓA ĐƠN");
@@ -120,14 +95,6 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
             }
         });
 
-        btn5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btn5.setText("TÌM");
-        btn5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,20 +103,16 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
@@ -169,6 +132,27 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
             }
         });
 
+        tb1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tb1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "STT", "MÃ HĐ", "NGÀY BÁN", "NHÂN VIÊN", "TÊN KHÁCH HÀNG", "TỔNG TIỀN"
+            }
+        ));
+        tb1.setRowHeight(30);
+        jScrollPane2.setViewportView(tb1);
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -176,15 +160,17 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                         .addComponent(btn3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(43, 43, 43)
                         .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane2)))
                 .addGap(110, 110, 110))
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(464, 464, 464)
@@ -199,17 +185,18 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(310, Short.MAX_VALUE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65))
+                        .addGap(57, 57, 57)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,16 +215,6 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        // TODO add your handling code here:
-        if(cbMaHD.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã hóa đơn cần tìm!","Thông báo",0);
-        else{
-            HDonDTO hdDTO=new HDonDTO();
-            hdDTO.setMA_HD(cbMaHD.getSelectedItem().toString());
-            getHD(hdDTO);
-        }
-    }//GEN-LAST:event_btn5ActionPerformed
-
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
         loadAll();
@@ -252,7 +229,7 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
 
                 Frm_ChiTietPhieu cthd = new Frm_ChiTietPhieu();
                 cthd.lblTitle.setText("CHI TIẾT HÓA ĐƠN");
-                cthd.lblID.setText("Mã hóa đơn: " + cbMaHD.getSelectedItem().toString());
+                cthd.lblID.setText("Mã hóa đơn: " + maHD);
                 cthd.setVisible(true);
                 cthd.QLHD = this;
                 ChiTietHD_DTO cthdDTO = new ChiTietHD_DTO();
@@ -265,7 +242,7 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
         } else {
             Frm_ChiTietPhieu cthd = new Frm_ChiTietPhieu();
             cthd.lblTitle.setText("CHI TIẾT HÓA ĐƠN");
-            cthd.lblID.setText("Mã hóa đơn: " + cbMaHD.getSelectedItem().toString());
+            cthd.lblID.setText("Mã hóa đơn: " + cbMaHD.getSelectedItem());
             cthd.setVisible(true);
             cthd.QLHD = this;
             ChiTietHD_DTO cthdDTO = new ChiTietHD_DTO();
@@ -300,7 +277,12 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
 
     private void cbMaHDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMaHDItemStateChanged
         // TODO add your handling code here:
-        btn5.doClick();
+        if(cbMaHD.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã hóa đơn cần tìm!","Thông báo",0);
+        else{
+            HDonDTO hdDTO=new HDonDTO();
+            hdDTO.setMA_HD(cbMaHD.getSelectedItem().toString());
+            getHD(hdDTO);
+        }
     }//GEN-LAST:event_cbMaHDItemStateChanged
 
     /**
@@ -308,12 +290,13 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
      */
    
     public void loadAll() {
-	String[] header = { "STT","MÃ HĐ","NGÀY XUẤT","NHÂN VIÊN","KHÁCH HÀNG", "TỔNG TIỀN"};
+	String[] header = { "STT","MÃ HĐ","NGÀY BÁN","NHÂN VIÊN","KHÁCH HÀNG", "TỔNG TIỀN"};
 	DefaultTableModel dtm = new DefaultTableModel(header, 0);	 
 	ArrayList<HDonDTO> arr = new ArrayList<HDonDTO>();
 	 HDonBLL hdBLL = new HDonBLL();
 	 arr = hdBLL.getAllHDon();
 	 HDonDTO hdDTO = new HDonDTO();
+         System.out.println(arr.size());
 	 for (int i = 0; i < arr.size(); i++) {
 		 hdDTO = arr.get(i);		 
 		 String id = hdDTO.getMA_HD();	
@@ -370,12 +353,11 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
-    private javax.swing.JButton btn5;
     private javax.swing.JButton btnReport;
     private javax.swing.JComboBox<String> cbMaHD;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JLabel lblTitle;
     private javax.swing.JPanel panel;
     private javax.swing.JTable tb1;

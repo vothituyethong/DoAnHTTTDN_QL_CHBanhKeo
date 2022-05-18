@@ -469,7 +469,7 @@ public class Frm_LapPX extends javax.swing.JFrame {
                         hangDTO.setMA_HANG(tbxuat.getModel().getValueAt(i, 1).toString());
                         HangHoaBLL hangBLL = new HangHoaBLL();
                         int num = Integer.parseInt(tbxuat.getModel().getValueAt(i, 4).toString());
-                        if (hangBLL.updateSL(hangDTO, num) == 0) {
+                        if (hangBLL.updateSL(hangDTO, -num) == 0) {
                             JOptionPane.showMessageDialog(null, "Cập nhật số lượng hàng còn lại thất bại!", "Thông báo", 0);
                         }
                     }

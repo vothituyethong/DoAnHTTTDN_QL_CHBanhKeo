@@ -36,8 +36,7 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
         panel.setBackground(Color.WHITE);
         btn2.setBackground(Color.PINK);
         btn3.setBackground(Color.PINK);
-        btn4.setBackground(Color.PINK);
-        btn5.setBackground(Color.PINK);        
+        btn4.setBackground(Color.PINK);       
         btnReport.setBackground(Color.PINK);       
     }
     
@@ -98,7 +97,6 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
         btn4 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         cbMaPN = new javax.swing.JComboBox<>();
-        btn5 = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
         datePN = new com.toedter.calendar.JDateChooser();
 
@@ -194,14 +192,6 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
             }
         });
 
-        btn5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btn5.setText("TÌM");
-        btn5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn5ActionPerformed(evt);
-            }
-        });
-
         btnReport.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnReport.setText("IN PHIẾU");
         btnReport.addActionListener(new java.awt.event.ActionListener() {
@@ -251,9 +241,7 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cbMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(42, 42, 42)))
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,8 +296,7 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -361,16 +348,6 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadAll();
     }//GEN-LAST:event_btn3ActionPerformed
-
-    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        // TODO add your handling code here:
-        if(cbMaPN.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã phiếu nhập cần tìm!","Thông báo",0);
-        else{
-            PNhapDTO pnDTO=new PNhapDTO();
-            pnDTO.setMA_PN(cbMaPN.getSelectedItem().toString());
-            getPN(pnDTO);
-        }
-    }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
@@ -452,20 +429,34 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        PNhapDTO pnDTO=new PNhapDTO();        
-        PNhapBLL pnBLL=new PNhapBLL();        
-        if(lblMaPN.getText().equals(" ")) JOptionPane.showMessageDialog(null,"Vui lòng chọn phiếu trước khi in!","Thông báo",0);
-        else{
-            pnDTO.setMA_PN(lblMaPN.getText());
+        if (cbMaPN.getSelectedIndex() == 0) {
+            try {
+                int selectedIndex = tb1.getSelectedRow();
+                String maPN = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+                PNhapDTO pnDTO=new PNhapDTO();        
+                PNhapBLL pnBLL=new PNhapBLL();
+                pnDTO.setMA_PN(maPN);
+                pnBLL.XuatPN(pnDTO);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn Phiếu nhập cần in!", "Thông báo", 0);
+            }
+        } else {
+            PNhapDTO pnDTO=new PNhapDTO();        
+            PNhapBLL pnBLL=new PNhapBLL();
+            pnDTO.setMA_PN(cbMaPN.getSelectedItem().toString());
             pnBLL.XuatPN(pnDTO);
-        }                       
-            
-        
+        }
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void cbMaPNItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMaPNItemStateChanged
         // TODO add your handling code here:
-        btn5.doClick();
+        if(cbMaPN.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã phiếu nhập cần tìm!","Thông báo",0);
+        else{
+            PNhapDTO pnDTO=new PNhapDTO();
+            pnDTO.setMA_PN(cbMaPN.getSelectedItem().toString());
+            getPN(pnDTO);
+        }
     }//GEN-LAST:event_cbMaPNItemStateChanged
 
     /**
@@ -537,7 +528,6 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
-    private javax.swing.JButton btn5;
     private javax.swing.JButton btnReport;
     private javax.swing.JComboBox<String> cb4;
     private javax.swing.JComboBox<String> cb5;

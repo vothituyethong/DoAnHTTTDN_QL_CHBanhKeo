@@ -200,7 +200,7 @@ public class Frm_ThemNCC extends javax.swing.JFrame {
         });
 
         btn2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btn2.setText("QUAY LẠI");
+        btn2.setText("CHỌN");
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);

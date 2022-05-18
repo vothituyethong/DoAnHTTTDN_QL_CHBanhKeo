@@ -82,9 +82,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel9" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="cbMaPN" min="-2" pref="183" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btn5" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <Component id="cbMaPN" min="-2" pref="298" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
@@ -156,7 +154,6 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="cbMaPN" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="btn5" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -388,17 +385,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
-        </Component>
-        <Component class="javax.swing.JButton" name="btn5">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="T&#xcc;M"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn5ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnReport">
           <Properties>

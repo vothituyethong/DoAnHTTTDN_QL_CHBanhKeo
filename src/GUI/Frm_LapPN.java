@@ -106,7 +106,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
         lblMAPN = new javax.swing.JLabel();
         cbMaPN = new javax.swing.JComboBox<>();
         lblManv = new javax.swing.JLabel();
-        btn1 = new javax.swing.JButton();
         lTien = new javax.swing.JLabel();
         btnReport = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -203,14 +202,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
 
         lblManv.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblManv.setText("....");
-
-        btn1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn1.setText("+");
-        btn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
-            }
-        });
 
         lTien.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lTien.setText("0");
@@ -340,10 +331,8 @@ public class Frm_LapPN extends javax.swing.JFrame {
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(lblmanhacc, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn1)))
-                .addGap(803, 803, 803))
+                        .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(857, 857, 857))
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(499, 499, 499)
                 .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,8 +377,7 @@ public class Frm_LapPN extends javax.swing.JFrame {
                             .addComponent(lblmaphieu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblMAPN, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblmanhacc, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn1))
+                            .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblngaylap, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,13 +502,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
         }
         //loadAll();
     }//GEN-LAST:event_btnsearchActionPerformed
-
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        // TODO add your handling code here:
-        Frm_ThemNCC add=new Frm_ThemNCC();
-        add.setVisible(true);
-        add.PN=this;
-    }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnadd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd2ActionPerformed
         // TODO add your handling code here:
@@ -693,7 +674,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
-    private javax.swing.JButton btn1;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnadd2;
