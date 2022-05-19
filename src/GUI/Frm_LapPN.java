@@ -45,7 +45,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("PHẦN MỀM QUẢN LÝ CỬA HÀNG BÁNH KẸO MAILISA");
         btnadd.setBackground(Color.PINK);        
-        btnsearch.setBackground(Color.PINK);  
         btn.setBackground(Color.PINK); 
         btnReport.setBackground(Color.PINK);
         tf1.setText("Nhập Mã hàng");
@@ -100,7 +99,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbpnhap = new javax.swing.JTable();
         btnadd = new javax.swing.JButton();
-        btnsearch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cb1 = new javax.swing.JComboBox<>();
         lblMAPN = new javax.swing.JLabel();
@@ -168,14 +166,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
         btnadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnaddActionPerformed(evt);
-            }
-        });
-
-        btnsearch.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnsearch.setText("TÌM");
-        btnsearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsearchActionPerformed(evt);
             }
         });
 
@@ -347,8 +337,7 @@ public class Frm_LapPN extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(97, 97, 97))
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(13, 13, 13)))
@@ -403,8 +392,7 @@ public class Frm_LapPN extends javax.swing.JFrame {
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(66, 66, 66))))
         );
 
@@ -485,24 +473,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cb1ActionPerformed
 
-    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
-        // TODO add your handling code here:
-        PNhapDTO pnDTO=new PNhapDTO();
-        ChiTietPN_DTO ctpnDTO=new ChiTietPN_DTO();
-        pnDTO.setMA_PN(String.valueOf(cbMaPN.getSelectedItem()));
-        ctpnDTO.setMA_PN(String.valueOf(cbMaPN.getSelectedItem()));
-        if(cbMaPN.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã phiếu cần tìm!","Thông báo",0);
-        }
-        else{
-                     
-            getPN(pnDTO);
-            getCTPN(ctpnDTO);
-            
-        }
-        //loadAll();
-    }//GEN-LAST:event_btnsearchActionPerformed
-
     private void btnadd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd2ActionPerformed
         // TODO add your handling code here:
         Frm_ThemHang addItem=new Frm_ThemHang();
@@ -562,7 +532,19 @@ public class Frm_LapPN extends javax.swing.JFrame {
 
     private void cbMaPNItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMaPNItemStateChanged
         // TODO add your handling code here:
-        btnsearch.doClick();
+        PNhapDTO pnDTO=new PNhapDTO();
+        ChiTietPN_DTO ctpnDTO=new ChiTietPN_DTO();
+        pnDTO.setMA_PN(String.valueOf(cbMaPN.getSelectedItem()));
+        ctpnDTO.setMA_PN(String.valueOf(cbMaPN.getSelectedItem()));
+        if(cbMaPN.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã phiếu cần tìm!","Thông báo",0);
+        }
+        else{
+                     
+            getPN(pnDTO);
+            getCTPN(ctpnDTO);
+            
+        }
     }//GEN-LAST:event_cbMaPNItemStateChanged
 
     private void tf1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf1MouseClicked
@@ -677,7 +659,6 @@ public class Frm_LapPN extends javax.swing.JFrame {
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnadd2;
-    private javax.swing.JButton btnsearch;
     private javax.swing.JComboBox<String> cb1;
     private javax.swing.JComboBox<String> cbMaPN;
     private com.toedter.calendar.JDateChooser datePN;

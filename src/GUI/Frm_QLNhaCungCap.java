@@ -84,6 +84,7 @@ public class Frm_QLNhaCungCap extends javax.swing.JFrame {
         lbl4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lbl4.setText("Số Điện Thoại:");
 
+        tf1.setEditable(false);
         tf1.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
         tf1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -295,8 +296,8 @@ public class Frm_QLNhaCungCap extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pn5Layout.createSequentialGroup()
                                 .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn5Layout.createSequentialGroup()
                         .addContainerGap()
@@ -382,19 +383,19 @@ public class Frm_QLNhaCungCap extends javax.swing.JFrame {
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         NCC_DTO nccDTO=new NCC_DTO();
-        
+        NCC_BLL nccBLL=new NCC_BLL();
         if(tf1.getText().equals("Nhập mã nhà cc")||tf3.getText().equals("Nhập địa chỉ")||tf4.getText().equals("Nhập sđt")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!","Thông báo",0);
         }
         else{
-            nccDTO.setMA_NCC(tf1.getText());
+            nccDTO.setMA_NCC(nccBLL.getNextMaNCC());
             nccDTO.setTEN_NCC(tf2.getText());
             nccDTO.setD_CHI(tf3.getText());
             String pattern="^0\\d{9,10}$";
             if(tf4.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!","Thông báo",0);
             else{
                 nccDTO.setSDT(tf4.getText());
-                NCC_BLL nccBLL=new NCC_BLL();
+                
                 if (nccBLL.insertNCC(nccDTO)!=0) {
                     loadAll();
                     JOptionPane.showMessageDialog(null, "Thêm Nhà cung cấp thành công!","Thông báo",1);
@@ -488,13 +489,19 @@ public class Frm_QLNhaCungCap extends javax.swing.JFrame {
         // TODO add your handling code here:
         NCC_DTO nccDTO=new NCC_DTO();
         if(cb1.getSelectedIndex()==0){
-            nccDTO.setMA_NCC(tf5.getText());
             if(tf5.getText().equals("Nhập dữ liệu cần tìm")){
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập Mã Nhà cung cấp cần tìm!","Thông báo",0);
             }
-            else       
-                getNCCMa(nccDTO);
-            }
+            else {
+                String patternMaHH = "^[a-zA-Z0-9]+$";
+                if (tf5.getText().matches(patternMaHH) == false)
+                    JOptionPane.showMessageDialog(null, "Mã NCC không được chứa ký tự đặc biệt!", "Thông báo", 0);
+                else{
+                    nccDTO.setMA_NCC(tf5.getText());
+                    getNCCMa(nccDTO);
+                }
+            }       
+        }
         else{
             nccDTO.setTEN_NCC(tf5.getText());
             if(tf5.getText().equals("Nhập dữ liệu cần tìm")){

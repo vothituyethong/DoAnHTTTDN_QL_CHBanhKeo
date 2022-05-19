@@ -79,8 +79,10 @@ public class Frm_QLPhieuXuat extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 18))); // NOI18N
 
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
         jLabel9.setText("MÃ PHIẾU:");
 
+        cbMaPX.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         cbMaPX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Chọn Mã phiếu xuất]" }));
         cbMaPX.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -207,11 +209,10 @@ public class Frm_QLPhieuXuat extends javax.swing.JFrame {
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
-        if (cbMaPX.getSelectedIndex() == 0) {
+        int selectedIndex = tb1.getSelectedRow();
+        String maPX = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+        if (cbMaPX.getSelectedIndex() == 0 || !cbMaPX.getSelectedItem().toString().equals(maPX)) {
             try {
-                int selectedIndex = tb1.getSelectedRow();
-                String maPX = tb1.getModel().getValueAt(selectedIndex, 1).toString();
-
                 Frm_ChiTietPhieu ctpx = new Frm_ChiTietPhieu();
                 ctpx.lblTitle.setText("CHI TIẾT PHIẾU XUẤT");
                 ctpx.lblID.setText("Mã phiếu: " + maPX);
@@ -238,11 +239,10 @@ public class Frm_QLPhieuXuat extends javax.swing.JFrame {
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        
-        if (cbMaPX.getSelectedIndex() == 0) {
+        int selectedIndex = tb1.getSelectedRow();
+        String maPX = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+        if (cbMaPX.getSelectedIndex() == 0 || !cbMaPX.getSelectedItem().toString().equals(maPX)) {
             try {
-                int selectedIndex = tb1.getSelectedRow();
-                String maPX = tb1.getModel().getValueAt(selectedIndex, 1).toString();
                 PXuatDTO pxDTO = new PXuatDTO();
                 PXuatBLL pxBLL = new PXuatBLL();
                 pxDTO.setMA_PX(maPX);

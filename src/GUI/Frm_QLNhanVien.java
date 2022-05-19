@@ -102,6 +102,7 @@ public class Frm_QLNhanVien extends javax.swing.JFrame {
         lbl6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lbl6.setText(" Số Điện Thoại:");
 
+        tf1.setEditable(false);
         tf1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tf1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -440,26 +441,26 @@ public class Frm_QLNhanVien extends javax.swing.JFrame {
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         NhanVienDTO nvDTO=new NhanVienDTO();
+        NhanVienBLL nvBLL=new NhanVienBLL();
         if(tf1.getText().equals("Nhập mã n.viên")||tf2.getText().equals("Nhập tên n.viên")||tf5.getText().equals("Nhập địa chỉ")||tf6.getText().equals("Nhập sđt")) 
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin Nhân viên cần thêm mới!","Thông báo",0);
         else{
-            nvDTO.setMA_NV(tf1.getText());
+            nvDTO.setMA_NV(nvBLL.getNextMaNV());
             nvDTO.setTEN_NV(tf2.getText());
-            Date ngay = new Date(dateNS.getDate().getTime());
-                    //Date ngay=Date.valueOf(String.valueOf(year) +"-"+String.valueOf(month)+"-"+String.valueOf(day));                    
+            Date ngay = new Date(dateNS.getDate().getTime());                  
                     nvDTO.setNG_SINH(ngay);
                     if(rd1.isSelected()) nvDTO.setG_TINH("Nam");
                     else   nvDTO.setG_TINH("Nữ");
                     nvDTO.setD_CHI(tf5.getText());
-                    
                     String pattern="^0\\d{9,10}$";
-                    if(tf6.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!","Thông báo",0);
+                    if(tf6.getText().matches(pattern )==false) 
+                        JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!","Thông báo",0);
                     else{
                         nvDTO.setSDT(tf6.getText());
-                        if(cb4.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Chức vụ!","Thông báo",0);
+                        if(cb4.getSelectedIndex()==0) 
+                            JOptionPane.showMessageDialog(null, "Vui lòng chọn Chức vụ!","Thông báo",0);
                         else{
                             nvDTO.setCHUC_VU((String)cb4.getSelectedItem());
-                            NhanVienBLL nvBLL=new NhanVienBLL();
                             if (nvBLL.insertnvien(nvDTO)!=0) {
                                 loadAll();
                                 JOptionPane.showMessageDialog(null, "Thêm Nhân viên mới thành công!","Thông báo",1);
@@ -530,44 +531,45 @@ public class Frm_QLNhanVien extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
-        NhanVienDTO nvDTO=new NhanVienDTO();
-        if(tf1.getText().equals("Nhập mã n.viên")||tf2.getText().equals("Nhập tên n.viên")||tf5.getText().equals("Nhập địa chỉ")||tf6.getText().equals("Nhập sđt")) 
-                JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin Nhân viên cần sửa!","Thông báo",0);
-        else{
+        NhanVienDTO nvDTO = new NhanVienDTO();
+        if (tf1.getText().equals("Nhập mã n.viên") || tf2.getText().equals("Nhập tên n.viên") || tf5.getText().equals("Nhập địa chỉ") || tf6.getText().equals("Nhập sđt")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin Nhân viên cần sửa!", "Thông báo", 0);
+        } else {
             nvDTO.setMA_NV(tf1.getText());
             nvDTO.setTEN_NV(tf2.getText());
-            Date ngay = new Date(dateNS.getDate().getTime());                    
-                    nvDTO.setNG_SINH(ngay);
-                    if(rd1.isSelected()) nvDTO.setG_TINH("Nam");
-                    else   nvDTO.setG_TINH("Nữ");
-                    nvDTO.setD_CHI(tf5.getText());
-                    //test số điện thoại
-                    String pattern="^0\\d{9,10}$";
-                    if(tf6.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!","Thông báo",0);
-                    else{
-                        nvDTO.setSDT(tf6.getText());
-                        if(cb4.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Chức vụ!","Thông báo",0);
-                        else{
-                            nvDTO.setCHUC_VU((String)cb4.getSelectedItem());
-                            NhanVienBLL nvBLL=new NhanVienBLL();
-                            if (nvBLL.updatenvien(nvDTO,id)!=0) {
-                                loadAll();
-                                JOptionPane.showMessageDialog(null, "Sửa Nhân viên thành công!","Thông báo",1);
-                                tf1.setText("");
-                                tf2.setText("");
-                                dateNS.setDate(null);
-                                tf5.setText("");
-                                tf6.setText("");
-                                cb4.setSelectedIndex(0);
-                            }
-                            else{
-                                JOptionPane.showMessageDialog(null, "Sửa Nhân viên thất bại!","Thông báo",0);
-                            }
-                        }
-                    }           
-                    
-                
-            
+            Date ngay = new Date(dateNS.getDate().getTime());
+            nvDTO.setNG_SINH(ngay);
+            if (rd1.isSelected()) {
+                nvDTO.setG_TINH("Nam");
+            } else {
+                nvDTO.setG_TINH("Nữ");
+            }
+            nvDTO.setD_CHI(tf5.getText());
+            //test số điện thoại
+            String pattern = "^0\\d{9,10}$";
+            if (tf6.getText().matches(pattern) == false) {
+                JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!", "Thông báo", 0);
+            } else {
+                nvDTO.setSDT(tf6.getText());
+                if (cb4.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng chọn Chức vụ!", "Thông báo", 0);
+                } else {
+                    nvDTO.setCHUC_VU((String) cb4.getSelectedItem());
+                    NhanVienBLL nvBLL = new NhanVienBLL();
+                    if (nvBLL.updatenvien(nvDTO, id) != 0) {
+                        loadAll();
+                        JOptionPane.showMessageDialog(null, "Sửa Nhân viên thành công!", "Thông báo", 1);
+                        tf1.setText("");
+                        tf2.setText("");
+                        dateNS.setDate(null);
+                        tf5.setText("");
+                        tf6.setText("");
+                        cb4.setSelectedIndex(0);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Sửa Nhân viên thất bại!", "Thông báo", 0);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_btn2ActionPerformed
 
@@ -575,18 +577,22 @@ public class Frm_QLNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         NhanVienDTO nvDTO=new NhanVienDTO();
         if(cb5.getSelectedIndex()==0){
-            nvDTO.setMA_NV(tf7.getText());
-            if(tf7.getText().equals("Nhập dữ liệu cần tìm")){
+            if(tf7.getText().equals("Nhập dữ liệu cần tìm"))
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập Mã Nhân viên cần tìm!","Thông báo",0);
-            }
-            else
-                getNvMa(nvDTO);            
+            else{
+                String patternMaHH = "^[a-zA-Z0-9]+$";
+                if (tf7.getText().matches(patternMaHH) == false)
+                    JOptionPane.showMessageDialog(null, "Mã nhân viên không được chứa ký tự đặc biệt!", "Thông báo", 0);
+                else{
+                    nvDTO.setMA_NV(tf7.getText());
+                    getNvMa(nvDTO); 
+                }
+            }              
         }
         else{
             nvDTO.setTEN_NV(tf7.getText());
-            if(tf7.getText().equals("Nhập dữ liệu cần tìm")){
+            if(tf7.getText().equals("Nhập dữ liệu cần tìm"))
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập Tên Nhân viên cần tìm!","Thông báo",0);
-            }
             else
                 getNvTen(nvDTO);
         }

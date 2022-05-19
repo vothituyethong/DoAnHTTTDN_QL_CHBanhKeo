@@ -43,6 +43,20 @@ public class NhanVienBLL{
         return nvDAL.getMaNV(nvienDTO);
     }
     
+     public String getNextMaNV(){
+        String x=null;
+        int n=nvDAL.getAllNvien().size();
+        n++;
+        if(n<10)
+        x="00"+Integer.toString(n);
+        else{if(n<100)
+            x="0"+Integer.toString(n);
+        else
+        x=Integer.toString(n);
+        }
+        return x;
+    }
+    
     public void ExportExcel(){        
         nvDAL.ExportExcel();
     }

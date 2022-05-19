@@ -446,71 +446,73 @@ public class Frm_QLHangHoa extends javax.swing.JFrame {
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         HangHoaDTO hangDTO=new HangHoaDTO();
-        if(tf1.getText().equals("Nhập mã hàng")||tf2.getText().equals("Nhập tên hàng")||tf3.getText().equals("Nhập số lượng")||tf5.getText().equals("Nhập giá")){
+        if(tf1.getText().equals("Nhập mã hàng")||tf2.getText().equals("Nhập tên hàng")||tf3.getText().equals("Nhập số lượng")||tf5.getText().equals("Nhập giá"))
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin.","Thông báo",0);
-        }
-        else{
-            hangDTO.setMA_HANG(tf1.getText());
-            hangDTO.setTEN_HANG(tf2.getText());            
-            String pattern="\\d{1,}";
-            if(tf3.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!","Thông báo",0);                
-            else{
-                int so_luong=Integer.parseInt(tf3.getText());
-                hangDTO.setSO_LUONG(so_luong);
-                String value1=(String) cb1.getSelectedItem();
-                String maLoai="";
-                if(cb1.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã loại hàng","Thông báo",0);
-                else{
-                    maLoai=value1.substring(0, 2);
-                    hangDTO.setMA_LOAI(maLoai);
-                                        
-                    if(tf5.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Đơn giá phải là số nguyên dương!","Thông báo",0);                
-                    else{
-                        int gia=Integer.parseInt(tf5.getText());
-                        hangDTO.setGIA(gia);
-                        HangHoaBLL hangBLL=new HangHoaBLL();
-                        if (hangBLL.inserthang(hangDTO)!=0) {
-                            loadAll();
-                            JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công!","Thông báo",1);
-                            tf1.setText("");
-                            tf2.setText("");
-                            tf3.setText("");
-                            tf5.setText("");
-                            cb1.setSelectedIndex(0);
+        else {
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf1.getText().matches(patternMaHH) == false)
+                JOptionPane.showMessageDialog(null, "Mã hàng không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            else {
+                hangDTO.setMA_HANG(tf1.getText());
+                hangDTO.setTEN_HANG(tf2.getText());
+                String pattern = "\\d{1,}";
+                if (tf3.getText().matches(pattern) == false)
+                    JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!", "Thông báo", 0);
+                else {
+                    int so_luong = Integer.parseInt(tf3.getText());
+                    hangDTO.setSO_LUONG(so_luong);
+                    String value1 = (String) cb1.getSelectedItem();
+                    String maLoai = "";
+                    if (cb1.getSelectedIndex() == 0)
+                        JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã loại hàng", "Thông báo", 0);
+                    else {
+                        maLoai = value1.substring(0, 2);
+                        hangDTO.setMA_LOAI(maLoai);
+                        if (tf5.getText().matches(pattern) == false)
+                            JOptionPane.showMessageDialog(null, "Đơn giá phải là số nguyên dương!", "Thông báo", 0);
+                        else {
+                            int gia = Integer.parseInt(tf5.getText());
+                            hangDTO.setGIA(gia);
+                            HangHoaBLL hangBLL = new HangHoaBLL();
+                            if (hangBLL.inserthang(hangDTO) != 0) {
+                                loadAll();
+                                JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công!", "Thông báo", 1);
+                                tf1.setText("");
+                                tf2.setText("");
+                                tf3.setText("");
+                                tf5.setText("");
+                                cb1.setSelectedIndex(0);
+                            } else
+                                JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại!", "Thông báo", 0);
                         }
-                        else{
-                            JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại!","Thông báo",0);
-                        }
-                    }          
+                    }
                 }
             }
-        }        
+        }
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
-        HangHoaDTO hangDTO=new HangHoaDTO();
+        HangHoaDTO hangDTO = new HangHoaDTO();
         hangDTO.setMA_HANG(tf1.getText());
-        if(tf1.getText().equals("Nhập mã hàng")||tf1.getText()==null) 
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Mã hàng!","Thông báo",0);
-        else{
-            HangHoaBLL hangBLL=new HangHoaBLL();
-            int choice = JOptionPane.showConfirmDialog(null,"Bạn có chắc chắn muốn xóa dữ liệu?", "Xác nhận",JOptionPane.YES_NO_OPTION);
-            if (choice == JOptionPane.YES_OPTION){
-                if (hangBLL.deletethang(hangDTO)!=0) {
-                    loadAll();                
-                    JOptionPane.showMessageDialog(null, "Xoá thành công!","Thông báo",1);
+        if (tf1.getText().equals("Nhập mã hàng") || tf1.getText() == null)
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Mã hàng!", "Thông báo", 0);
+        else {
+            HangHoaBLL hangBLL = new HangHoaBLL();
+            int choice = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa dữ liệu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (hangBLL.deletethang(hangDTO) != 0) {
+                    loadAll();
+                    JOptionPane.showMessageDialog(null, "Xoá thành công!", "Thông báo", 1);
                     tf1.setText("");
                     tf2.setText("");
                     tf3.setText("");
                     tf5.setText("");
                     cb1.setSelectedIndex(0);
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Mã hàng này không tồn tại!","Thông báo",0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Mã hàng này không tồn tại!", "Thông báo", 0);
                 }
             }
-            
         }
     }//GEN-LAST:event_btn3ActionPerformed
 
@@ -520,36 +522,43 @@ public class Frm_QLHangHoa extends javax.swing.JFrame {
         if(tf1.getText().equals("Nhập mã hàng")||tf2.getText().equals("Nhập tên hàng")||tf3.getText().equals("Nhập số lượng")||tf5.getText().equals("Nhập giá")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin.","Thông báo",0);
         }
-        else{
-            hangDTO.setMA_HANG(tf1.getText());
-            hangDTO.setTEN_HANG(tf2.getText());            
-            String pattern="\\d{1,}";
-            if(tf3.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!","Thông báo",0);                
-            else{
-                int so_luong=Integer.parseInt(tf3.getText());
-                hangDTO.setSO_LUONG(so_luong);
-                String value1=(String) cb1.getSelectedItem();
-                String maLoai="";
-                if(cb1.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã loại hàng","Thông báo",0);
-                else{
-                    maLoai=value1.substring(0, 2);
-                    hangDTO.setMA_LOAI(maLoai);                                        
-                    if(tf5.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Đơn giá phải là số nguyên dương!","Thông báo",0);                
-                    else{
-                        int gia=Integer.parseInt(tf5.getText());
-                        hangDTO.setGIA(Integer.parseInt(tf5.getText()));
-                        HangHoaBLL hangBLL=new HangHoaBLL();
-                        if (hangBLL.updatehang(hangDTO,id)!=0) {
-                            loadAll();
-                            JOptionPane.showMessageDialog(null, "Sửa sản phẩm thành công!","Thông báo",1);
-                            tf1.setText("");
-                            tf2.setText("");
-                            tf3.setText("");
-                            tf5.setText("");
-                            cb1.setSelectedIndex(0);
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null, "Sửa sản phẩm thất bại!","Thông báo",0);
+        else {
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf1.getText().matches(patternMaHH) == false)
+                JOptionPane.showMessageDialog(null, "Mã hàng không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            else {
+                hangDTO.setMA_HANG(tf1.getText());
+                hangDTO.setTEN_HANG(tf2.getText());
+                String pattern = "\\d{1,}";
+                if (tf3.getText().matches(pattern) == false)
+                    JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!", "Thông báo", 0);
+                else {
+                    int so_luong = Integer.parseInt(tf3.getText());
+                    hangDTO.setSO_LUONG(so_luong);
+                    String value1 = (String) cb1.getSelectedItem();
+                    String maLoai = "";
+                    if (cb1.getSelectedIndex() == 0)
+                        JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã loại hàng", "Thông báo", 0);
+                    else {
+                        maLoai = value1.substring(0, 2);
+                        hangDTO.setMA_LOAI(maLoai);
+                        if (tf5.getText().matches(pattern) == false)
+                            JOptionPane.showMessageDialog(null, "Đơn giá phải là số nguyên dương!", "Thông báo", 0);
+                        else {
+                            int gia = Integer.parseInt(tf5.getText());
+                            hangDTO.setGIA(Integer.parseInt(tf5.getText()));
+                            HangHoaBLL hangBLL = new HangHoaBLL();
+                            if (hangBLL.updatehang(hangDTO, id) != 0) {
+                                loadAll();
+                                JOptionPane.showMessageDialog(null, "Sửa sản phẩm thành công!", "Thông báo", 1);
+                                tf1.setText("");
+                                tf2.setText("");
+                                tf3.setText("");
+                                tf5.setText("");
+                                cb1.setSelectedIndex(0);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Sửa sản phẩm thất bại!", "Thông báo", 0);
+                            }
                         }
                     }
                 }
@@ -560,13 +569,18 @@ public class Frm_QLHangHoa extends javax.swing.JFrame {
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
         HangHoaDTO hangDTO=new HangHoaDTO();
-        if(cb2.getSelectedIndex()==0){
-            hangDTO.setMA_HANG(tf6.getText());
-            if(tf6.getText().equals("Nhập dữ liệu cần tìm")){
-                JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Mã hàng cần tìm!","Thông báo",0);
+        if (cb2.getSelectedIndex() == 0) { 
+            if (tf6.getText().equals("Nhập dữ liệu cần tìm"))
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Mã hàng cần tìm!", "Thông báo", 0);
+            else {
+                String patternMaHH = "^[a-zA-Z0-9]+$";
+                if (tf1.getText().matches(patternMaHH) == false)
+                    JOptionPane.showMessageDialog(null, "Mã hàng không được chứa ký tự đặc biệt!", "Thông báo", 0);
+                else{
+                    hangDTO.setMA_HANG(tf6.getText());
+                    getHangMa(hangDTO);
+                }        
             }
-            else
-                getHangMa(hangDTO);
         }
         else{
             hangDTO.setTEN_HANG(tf6.getText());
@@ -576,7 +590,6 @@ public class Frm_QLHangHoa extends javax.swing.JFrame {
             else
                 getHangTen(hangDTO);
         }
-        
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed

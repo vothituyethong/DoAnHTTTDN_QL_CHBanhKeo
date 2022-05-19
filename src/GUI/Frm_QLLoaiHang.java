@@ -41,8 +41,6 @@ public class Frm_QLLoaiHang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn5 = new javax.swing.JButton();
-        btn6 = new javax.swing.JButton();
         pn2 = new javax.swing.JPanel();
         lbl_LH = new javax.swing.JLabel();
         lbl1 = new javax.swing.JLabel();
@@ -59,15 +57,6 @@ public class Frm_QLLoaiHang extends javax.swing.JFrame {
         lblMaL = new javax.swing.JLabel();
         tf2 = new javax.swing.JTextField();
         cb1 = new javax.swing.JComboBox<>();
-
-        btn5.setText("RESET");
-        btn5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn5ActionPerformed(evt);
-            }
-        });
-
-        btn6.setText("CLOSE");
 
         lbl_LH.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         lbl_LH.setText("QUẢN LÝ LOẠI HÀNG");
@@ -90,11 +79,6 @@ public class Frm_QLLoaiHang extends javax.swing.JFrame {
         tf1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf1MouseClicked(evt);
-            }
-        });
-        tf1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf1ActionPerformed(evt);
             }
         });
 
@@ -292,57 +276,52 @@ public class Frm_QLLoaiHang extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf1ActionPerformed
-
-    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn5ActionPerformed
-
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         LoaiHangDTO loaiDTO=new LoaiHangDTO();
-        LoaiHangBLL loaiBLL=new LoaiHangBLL();
-        loaiDTO.setTEN_LOAI(tf1.getText());        
-        loaiDTO.setMA_LOAI(tf2.getText());
-        
-        if(tf2.getText().equals("Nhập mã loại")||tf1.getText().equals("Nhập tên loại")){
+        LoaiHangBLL loaiBLL=new LoaiHangBLL();        
+        if(tf2.getText().equals("Nhập mã loại")||tf1.getText().equals("Nhập tên loại"))
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!","Thông báo",0);
-        }
-        else{            
-            if (loaiBLL.insertl_hang(loaiDTO)!=0) {
-                loadAll();
-                JOptionPane.showMessageDialog(null, "Thêm Loại hàng mới thành công!","Thông báo",1);
-                tf2.setText("");
-                tf1.setText("");
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Thêm Loại hàng mới thất bại!","Thông báo",0);
-            }            
+        else{          
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf2.getText().matches(patternMaHH) == false)
+                JOptionPane.showMessageDialog(null, "Mã hàng không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            else {
+                loaiDTO.setTEN_LOAI(tf1.getText());
+                loaiDTO.setMA_LOAI(tf2.getText());
+                if (loaiBLL.insertl_hang(loaiDTO) != 0) {
+                    loadAll();
+                    JOptionPane.showMessageDialog(null, "Thêm Loại hàng mới thành công!", "Thông báo", 1);
+                    tf2.setText("");
+                    tf1.setText("");
+                } else
+                    JOptionPane.showMessageDialog(null, "Thêm Loại hàng mới thất bại!", "Thông báo", 0);
+            }         
         }
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
         LoaiHangDTO loaiDTO=new LoaiHangDTO();
-        LoaiHangBLL loaiBLL=new LoaiHangBLL();
-        loaiDTO.setTEN_LOAI(tf1.getText());        
-        loaiDTO.setMA_LOAI(tf2.getText());
-        
+        LoaiHangBLL loaiBLL=new LoaiHangBLL();        
         if(tf1.getText().equals("Nhập mã loại")||tf2.getText().equals("Nhập tên loại")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!","Thông báo",0);
         }
-        else{            
-            if (loaiBLL.updatel_hang(loaiDTO,id)!=0) {
-                loadAll();
-                JOptionPane.showMessageDialog(null, "Sửa Loại hàng thành công!","Thông báo",1);
-                tf2.setText("");
-                tf1.setText("");
+        else{
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf2.getText().matches(patternMaHH) == false)
+                JOptionPane.showMessageDialog(null, "Mã hàng không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            else {
+                loaiDTO.setTEN_LOAI(tf1.getText());
+                loaiDTO.setMA_LOAI(tf2.getText());
+                if (loaiBLL.updatel_hang(loaiDTO, id) != 0) {
+                    loadAll();
+                    JOptionPane.showMessageDialog(null, "Sửa Loại hàng thành công!", "Thông báo", 1);
+                    tf2.setText("");
+                    tf1.setText("");
+                } else
+                    JOptionPane.showMessageDialog(null, "Sửa Loại hàng thất bại!", "Thông báo", 0);
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Sửa Loại hàng thất bại!","Thông báo",0);
-            }            
         }
     }//GEN-LAST:event_btn2ActionPerformed
 
@@ -392,18 +371,22 @@ public class Frm_QLLoaiHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         LoaiHangDTO loaiDTO=new LoaiHangDTO();
         if(cb1.getSelectedIndex()==0){
-            loaiDTO.setMA_LOAI(tf3.getText());
-            if(tf3.getText().equals("Nhập dữ liệu cần tìm")){
+            if(tf3.getText().equals("Nhập dữ liệu cần tìm"))
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Mã loại hàng cần tìm!","Thông báo",0);
-            }
-            else
-                getLoaiMa(loaiDTO);
+            else{
+                String patternMaHH = "^[a-zA-Z0-9]+$";
+                if (tf3.getText().matches(patternMaHH) == false)
+                    JOptionPane.showMessageDialog(null, "Mã loại hàng không được chứa ký tự đặc biệt!", "Thông báo", 0);
+                else{
+                    loaiDTO.setMA_LOAI(tf3.getText());
+                    getLoaiMa(loaiDTO);
+                }    
+            }   
         }
         else{
             loaiDTO.setMA_LOAI(tf3.getText());
-            if(tf3.getText().equals("Nhập dữ liệu cần tìm")){
+            if(tf3.getText().equals("Nhập dữ liệu cần tìm"))
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Tên loại hàng cần tìm!","Thông báo",0);
-            }
             else
                 getLoaiTen(loaiDTO);
         }
@@ -541,8 +524,6 @@ public class Frm_QLLoaiHang extends javax.swing.JFrame {
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
-    private javax.swing.JButton btn5;
-    private javax.swing.JButton btn6;
     private javax.swing.JButton btn7;
     private javax.swing.JComboBox<String> cb1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -361,8 +361,11 @@ public class Frm_QuanLy extends javax.swing.JFrame {
                  info.lbl.setText(nvDTO.getMA_NV());
 		 info.lbl3.setText(nvDTO.getTEN_NV());
                  info.dateNS.setDate(nvDTO.getNG_SINH());
-		 
-                 info.tf1.setText(nvDTO.getG_TINH());
+		String gender = nvDTO.getG_TINH();
+                if (gender.equals("Nam"))
+                    info.rd1.setSelected(true);
+                else
+                    info.rd2.setSelected(true);
 		 info.tf4.setText(nvDTO.getSDT());
                  info.tf5.setText(nvDTO.getD_CHI());
                  info.lbl2.setText(nvDTO.getCHUC_VU());

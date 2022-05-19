@@ -279,18 +279,20 @@ public class Frm_QLQuyen extends javax.swing.JFrame {
         QuyenDTO roleDTO=new QuyenDTO();
         roleDTO.setMA_QUYEN(tf1.getText());
         roleDTO.setTEN_QUYEN(tf2.getText());
-        if(tf1.getText().equals("Nhập mã quyền")||tf2.getText().equals("Nhập tên quyền")){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!","Thông báo",0);
-        }
-        else{
-            QuyenBLL roleBLL=new QuyenBLL();
-            if (roleBLL.insertQuyen(roleDTO)!=0) {
-                loadAll();
-                JOptionPane.showMessageDialog(null, "Thêm quyền truy cập thành công!","Thông báo",1);
+        if (tf1.getText().equals("Nhập mã quyền") || tf2.getText().equals("Nhập tên quyền"))
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!", "Thông báo", 0);
+        else {
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf1.getText().matches(patternMaHH) == false) {
+                JOptionPane.showMessageDialog(null, "Mã quyền không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            } else {
+                QuyenBLL roleBLL = new QuyenBLL();
+                if (roleBLL.insertQuyen(roleDTO) != 0) {
+                    loadAll();
+                    JOptionPane.showMessageDialog(null, "Thêm quyền truy cập thành công!", "Thông báo", 1);
+                } else
+                    JOptionPane.showMessageDialog(null, "Thêm quyền truy cập thất bại!", "Thông báo", 0);
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Thêm quyền truy cập thất bại!","Thông báo",0);
-            }            
         }
     }//GEN-LAST:event_btn1ActionPerformed
 
@@ -336,23 +338,25 @@ public class Frm_QLQuyen extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
-        QuyenDTO roleDTO=new QuyenDTO();
+        QuyenDTO roleDTO = new QuyenDTO();
         roleDTO.setMA_QUYEN(tf1.getText());
         roleDTO.setTEN_QUYEN(tf2.getText());
-        if(tf1.getText().equals("Nhập mã quyền")||tf2.getText().equals("Nhập tên quyền")){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!","Thông báo",0);
-        }
-        else{
-            QuyenBLL roleBLL=new QuyenBLL();
-            if (roleBLL.updateQuyen(roleDTO,id)!=0) {
-                loadAll();
-                JOptionPane.showMessageDialog(null, "Sửa quyền truy cập thành công!","Thông báo",1);
-                tf1.setText("");
-                tf2.setText("");
+        if (tf1.getText().equals("Nhập mã quyền") || tf2.getText().equals("Nhập tên quyền"))
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!", "Thông báo", 0);
+        else {
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf1.getText().matches(patternMaHH) == false) 
+                JOptionPane.showMessageDialog(null, "Mã quyền không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            else {
+                QuyenBLL roleBLL = new QuyenBLL();
+                if (roleBLL.updateQuyen(roleDTO, id) != 0) {
+                    loadAll();
+                    JOptionPane.showMessageDialog(null, "Sửa quyền truy cập thành công!", "Thông báo", 1);
+                    tf1.setText("");
+                    tf2.setText("");
+                } else
+                    JOptionPane.showMessageDialog(null, "Sửa quyền truy cập thất bại!", "Thông báo", 0);
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Sửa quyền truy cập thất bại!","Thông báo",0);
-            }            
         }
     }//GEN-LAST:event_btn2ActionPerformed
 
@@ -360,12 +364,18 @@ public class Frm_QLQuyen extends javax.swing.JFrame {
         // TODO add your handling code here:
         QuyenDTO roleDTO=new QuyenDTO();
         if(cb1.getSelectedIndex()==0){
-             roleDTO.setMA_QUYEN(tf5.getText());
             if(tf5.getText().equals("Nhập dữ liệu cần tìm")){
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Mã quyền cần tìm!","Thông báo",0);
             }
-            else       
-                getQuyenMa(roleDTO);
+            else{
+                String patternMaHH = "^[a-zA-Z0-9]+$";
+                if (tf5.getText().matches(patternMaHH) == false)
+                    JOptionPane.showMessageDialog(null, "Mã quyền không được chứa ký tự đặc biệt!", "Thông báo", 0);
+                else{
+                     roleDTO.setMA_QUYEN(tf5.getText());
+                     getQuyenMa(roleDTO);
+                }
+            }         
         }
         else{
              roleDTO.setTEN_QUYEN(tf5.getText());

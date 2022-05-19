@@ -322,39 +322,43 @@ public class Frm_ThemHang extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        HangHoaDTO hangDTO=new HangHoaDTO();
-        if(tf1.getText().equals("Nhập mã hàng")||tf2.getText().equals("Nhập tên hàng")||tf3.getText().equals("Nhập số lượng")||tf4.getText().equals("Nhập giá")){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin.","Thông báo",0);
-        }
-        else{
-            hangDTO.setMA_HANG(tf1.getText());
-            hangDTO.setTEN_HANG(tf2.getText());            
-            String pattern="\\d{1,}";
-            if(tf3.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!","Thông báo",0);                
-            else{
-                int so_luong=Integer.parseInt(tf3.getText());
-                hangDTO.setSO_LUONG(so_luong);
-                String value1=(String) cb1.getSelectedItem();
-                String maLoai="";
-                if(cb1.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã loại hàng","Thông báo",0);
-                else{
-                    maLoai=value1.substring(0, 2);
-                    hangDTO.setMA_LOAI(maLoai);                    
-                    if(tf4.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "Đơn giá phải là số nguyên dương!","Thông báo",0);                
-                    else{
-                        int gia=Integer.parseInt(tf4.getText());
-                        hangDTO.setGIA(gia);
-                        HangHoaBLL hangBLL=new HangHoaBLL();
-                        if (hangBLL.inserthang(hangDTO)!=0) {
-                            loadAll();
-                            JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công!","Thông báo",1);
-                            
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại!","Thông báo",0);
+        HangHoaDTO hangDTO = new HangHoaDTO();
+        if (tf1.getText().equals("Nhập mã hàng") || tf2.getText().equals("Nhập tên hàng") || tf3.getText().equals("Nhập số lượng") || tf4.getText().equals("Nhập giá")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", 0);
+        } else {
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf1.getText().matches(patternMaHH) == false) {
+                JOptionPane.showMessageDialog(null, "Mã hàng không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            } else {
+                hangDTO.setMA_HANG(tf1.getText());
+                hangDTO.setTEN_HANG(tf2.getText());
+                String pattern = "\\d{1,}";
+                if (tf3.getText().matches(pattern) == false) {
+                    JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên dương!", "Thông báo", 0);
+                } else {
+                    int so_luong = Integer.parseInt(tf3.getText());
+                    hangDTO.setSO_LUONG(so_luong);
+                    String value1 = (String) cb1.getSelectedItem();
+                    String maLoai = "";
+                    if (cb1.getSelectedIndex() == 0) {
+                        JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã loại hàng", "Thông báo", 0);
+                    } else {
+                        maLoai = value1.substring(0, 2);
+                        hangDTO.setMA_LOAI(maLoai);
+                        if (tf4.getText().matches(pattern) == false) {
+                            JOptionPane.showMessageDialog(null, "Đơn giá phải là số nguyên dương!", "Thông báo", 0);
+                        } else {
+                            int gia = Integer.parseInt(tf4.getText());
+                            hangDTO.setGIA(gia);
+                            HangHoaBLL hangBLL = new HangHoaBLL();
+                            if (hangBLL.inserthang(hangDTO) != 0) {
+                                loadAll();
+                                JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công!", "Thông báo", 1);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại!", "Thông báo", 0);
+                            }
                         }
                     }
-                                    
                 }
             }
         } 

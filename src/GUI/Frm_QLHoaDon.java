@@ -222,11 +222,11 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
-        if (cbMaHD.getSelectedIndex() == 0) {
+        int selectedIndex = tb1.getSelectedRow();
+        String maHD = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+        if (cbMaHD.getSelectedIndex() == 0 || !cbMaHD.getSelectedItem().toString().equals(maHD)) {
             try {
-                int selectedIndex = tb1.getSelectedRow();
-                String maHD = tb1.getModel().getValueAt(selectedIndex, 1).toString();
-
+                
                 Frm_ChiTietPhieu cthd = new Frm_ChiTietPhieu();
                 cthd.lblTitle.setText("CHI TIẾT HÓA ĐƠN");
                 cthd.lblID.setText("Mã hóa đơn: " + maHD);
@@ -254,11 +254,10 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        
-        if (cbMaHD.getSelectedIndex() == 0) {
+        int selectedIndex = tb1.getSelectedRow();
+        String maHD = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+        if (cbMaHD.getSelectedIndex() == 0 || !cbMaHD.getSelectedItem().toString().equals(maHD)) {
             try {
-                int selectedIndex = tb1.getSelectedRow();
-                String maHD = tb1.getModel().getValueAt(selectedIndex, 1).toString();
                 HDonDTO hdDTO = new HDonDTO();
                 HDonBLL hdBLL = new HDonBLL();
                 hdDTO.setMA_HD(maHD);
@@ -296,7 +295,6 @@ public class Frm_QLHoaDon extends javax.swing.JFrame {
 	 HDonBLL hdBLL = new HDonBLL();
 	 arr = hdBLL.getAllHDon();
 	 HDonDTO hdDTO = new HDonDTO();
-         System.out.println(arr.size());
 	 for (int i = 0; i < arr.size(); i++) {
 		 hdDTO = arr.get(i);		 
 		 String id = hdDTO.getMA_HD();	

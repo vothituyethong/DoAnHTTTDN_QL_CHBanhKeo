@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 import BLL.NhanVienBLL;
@@ -40,12 +36,8 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
         btn2.setBackground(Color.PINK);
         btnPwd.setBackground(Color.PINK);
         lbl1.requestFocus();
-
-        tf1.setText("Nhập giới tính");
         tf4.setText("Nhập sđt");
         tf5.setText("Nhập địa chỉ");
-        
-        tf1.setForeground(Color.DARK_GRAY);
         tf4.setForeground(Color.DARK_GRAY);
         tf5.setForeground(Color.DARK_GRAY);
     }
@@ -60,6 +52,7 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panel = new javax.swing.JPanel();
         lbl1 = new javax.swing.JLabel();
         lblmanv = new javax.swing.JLabel();
@@ -81,11 +74,12 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
         btn2 = new javax.swing.JButton();
         lbl = new javax.swing.JLabel();
         lblngsinh1 = new javax.swing.JLabel();
-        tf1 = new javax.swing.JTextField();
         lbl2 = new javax.swing.JLabel();
         lbl3 = new javax.swing.JLabel();
         btnPwd = new javax.swing.JButton();
         dateNS = new com.toedter.calendar.JDateChooser();
+        rd1 = new javax.swing.JRadioButton();
+        rd2 = new javax.swing.JRadioButton();
 
         lbl1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         lbl1.setText("THÔNG TIN TÀI KHOẢN");
@@ -178,23 +172,6 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
         lblngsinh1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblngsinh1.setText("NGÀY SINH:");
 
-        tf1.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
-        tf1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tf1FocusLost(evt);
-            }
-        });
-        tf1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf1MouseClicked(evt);
-            }
-        });
-        tf1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tf1KeyPressed(evt);
-            }
-        });
-
         lbl2.setFont(new java.awt.Font("Times New Roman", 1, 17)); // NOI18N
         lbl2.setText("     .....");
 
@@ -213,6 +190,15 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
         dateNS.setDateFormatString("yyyy - MM - dd");
         dateNS.setFocusable(false);
         dateNS.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
+
+        buttonGroup1.add(rd1);
+        rd1.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
+        rd1.setSelected(true);
+        rd1.setText("Nam");
+
+        buttonGroup1.add(rd2);
+        rd2.setFont(new java.awt.Font("Times New Roman", 0, 17)); // NOI18N
+        rd2.setText("Nữ");
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -235,7 +221,6 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf5, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(tf1)
                             .addComponent(lbl2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(tf4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addGroup(panelLayout.createSequentialGroup()
@@ -243,7 +228,12 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
                                 .addGap(35, 35, 35)
                                 .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbl3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dateNS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(dateNS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(rd1)
+                                .addGap(70, 70, 70)
+                                .addComponent(rd2)))
                         .addGap(53, 53, 53)
                         .addComponent(lblhinh, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(403, 403, 403)
@@ -292,9 +282,11 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
                                 .addComponent(lblDchi))
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblngsinh, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblngsinh, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rd2))
+                                    .addComponent(rd1, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblsđt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,48 +350,34 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        NhanVienDTO nvDTO=new NhanVienDTO();
+        NhanVienDTO nvDTO = new NhanVienDTO();
         nvDTO.setMA_NV(lbl.getText());
         nvDTO.setTEN_NV(lbl3.getText());
-        Date ngaySinh =  new Date(dateNS.getDate().getTime());
-                    nvDTO.setNG_SINH(ngaySinh);
-                    if(tf1.getText().equals("Nhập giới tính"))
-                        JOptionPane.showMessageDialog(null,"Vui lòng nhập giới tính!","Thông báo", 0);
-                    else{
-                        if(!tf1.getText().equals("Nam")&&!tf1.getText().equals("Nữ"))
-                            JOptionPane.showMessageDialog(null,"Giới tính có thể là Nam hoặc Nữ","Thông báo", 0);
-                        else{
-                            nvDTO.setG_TINH(tf1.getText());
-                            String pattern="^0\\d{9,10}$";
-                            if(tf4.getText().matches(pattern )==false) JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!","Thông báo",0);
-                            else{
-                                nvDTO.setSDT(tf4.getText());
-                                if(tf5.getText().equals("Nhập địa chỉ"))
-                                    JOptionPane.showMessageDialog(null,"Vui lòng nhập địa chỉ!","Thông báo", 0);
-                                else{
-                                    nvDTO.setD_CHI(tf5.getText());
-                                    nvDTO.setCHUC_VU(lbl2.getText());
-                                    NhanVienBLL nvBLL=new NhanVienBLL();
-                                    if(nvBLL.updatenvien(nvDTO, lbl.getText())!=0) 
-                                        JOptionPane.showMessageDialog(null,"Cập nhật thông tin thành công!","Thông báo", 1);
-                                    else JOptionPane.showMessageDialog(null,"Cập nhật thông tin thất bại!","Thông báo", 0);
-                                }
-                            }
-                        }
-                    }
-                    
-                
-            
-        
-    }//GEN-LAST:event_btn1ActionPerformed
-
-    private void tf1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf1MouseClicked
-        // TODO add your handling code here:
-        if(tf1.getText().equals("Nhập giới tính")){
-            tf1.setText("");
-            tf1.setForeground(Color.BLACK);
+        Date ngaySinh = new Date(dateNS.getDate().getTime());
+        nvDTO.setNG_SINH(ngaySinh);
+        if (rd1.isSelected())
+            nvDTO.setG_TINH("Nam");
+        else
+            nvDTO.setG_TINH("Nữ");
+        String pattern = "^0\\d{9,10}$";
+        if (tf4.getText().matches(pattern) == false) {
+            JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!", "Thông báo", 0);
+        } else {
+            nvDTO.setSDT(tf4.getText());
+            if (tf5.getText().equals("Nhập địa chỉ")) {
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập địa chỉ!", "Thông báo", 0);
+            } else {
+                nvDTO.setD_CHI(tf5.getText());
+                nvDTO.setCHUC_VU(lbl2.getText());
+                NhanVienBLL nvBLL = new NhanVienBLL();
+                if (nvBLL.updatenvien(nvDTO, lbl.getText()) != 0) {
+                    JOptionPane.showMessageDialog(null, "Cập nhật thông tin thành công!", "Thông báo", 1);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cập nhật thông tin thất bại!", "Thông báo", 0);
+                }
+            }
         }
-    }//GEN-LAST:event_tf1MouseClicked
+    }//GEN-LAST:event_btn1ActionPerformed
 
     private void tf4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf4MouseClicked
         // TODO add your handling code here:
@@ -417,14 +395,6 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tf5MouseClicked
 
-    private void tf1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf1FocusLost
-        // TODO add your handling code here:
-        if(tf1.getText().equals("")){
-            tf1.setText("Nhập giới tính");
-            tf1.setForeground(Color.DARK_GRAY);
-        }
-    }//GEN-LAST:event_tf1FocusLost
-
     private void tf4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf4FocusLost
         // TODO add your handling code here:
         if(tf4.getText().equals("")){
@@ -440,13 +410,6 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
             tf5.setForeground(Color.DARK_GRAY);
         }
     }//GEN-LAST:event_tf5FocusLost
-
-    private void tf1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf1KeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){            
-            btn1.doClick();
-        }
-    }//GEN-LAST:event_tf1KeyPressed
 
     private void tf4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf4KeyPressed
         // TODO add your handling code here:
@@ -500,6 +463,7 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JButton btn1;
     public javax.swing.JButton btn2;
     private javax.swing.JButton btnPwd;
+    private javax.swing.ButtonGroup buttonGroup1;
     public com.toedter.calendar.JDateChooser dateNS;
     public javax.swing.JLabel lbl;
     private javax.swing.JLabel lbl1;
@@ -520,7 +484,8 @@ public class Frm_TTTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JLabel lblsđt;
     private javax.swing.JLabel lblten;
     private javax.swing.JPanel panel;
-    public javax.swing.JTextField tf1;
+    public javax.swing.JRadioButton rd1;
+    public javax.swing.JRadioButton rd2;
     public javax.swing.JTextField tf4;
     public javax.swing.JTextField tf5;
     // End of variables declaration//GEN-END:variables

@@ -351,14 +351,13 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
-        if (cbMaPN.getSelectedIndex() == 0) {
+        int selectedIndex = tb1.getSelectedRow();
+        String maPN = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+        if (cbMaPN.getSelectedIndex() == 0|| !cbMaPN.getSelectedItem().toString().equals(maPN)) {
             try {
-                int selectedIndex = tb1.getSelectedRow();
-                String maPN = tb1.getModel().getValueAt(selectedIndex, 1).toString();
-
                 Frm_ChiTietPhieu ctpn = new Frm_ChiTietPhieu();
                 ctpn.lblTitle.setText("CHI TIẾT PHIẾU NHẬP");
-                ctpn.lblID.setText("Mã phiếu: " + cbMaPN.getSelectedItem().toString());
+                ctpn.lblID.setText("Mã phiếu: " + maPN);
                 ctpn.setVisible(true);
                 ctpn.QLPN = this;
                 ChiTietPN_DTO ctpnDTO = new ChiTietPN_DTO();
@@ -429,10 +428,10 @@ public class Frm_QLPhieuNhap extends javax.swing.JFrame {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        if (cbMaPN.getSelectedIndex() == 0) {
-            try {
-                int selectedIndex = tb1.getSelectedRow();
-                String maPN = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+        int selectedIndex = tb1.getSelectedRow();
+        String maPN = tb1.getModel().getValueAt(selectedIndex, 1).toString();
+        if (cbMaPN.getSelectedIndex() == 0|| !cbMaPN.getSelectedItem().toString().equals(maPN)) {
+            try { 
                 PNhapDTO pnDTO=new PNhapDTO();        
                 PNhapBLL pnBLL=new PNhapBLL();
                 pnDTO.setMA_PN(maPN);

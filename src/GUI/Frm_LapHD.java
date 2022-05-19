@@ -42,8 +42,7 @@ public class Frm_LapHD extends javax.swing.JFrame {
         panel.setBackground(Color.WHITE);
         this.setLocationRelativeTo(null);
         this.setTitle("PHẦN MỀM QUẢN LÝ CỬA HÀNG BÁNH KẸO MAILISA");
-        btnadd.setBackground(Color.PINK);        
-        btnsearch.setBackground(Color.PINK);  
+        btnadd.setBackground(Color.PINK);         
         btn.setBackground(Color.PINK); 
         btnReport.setBackground(Color.PINK);
         tf1.setText("Nhập Mã hàng");
@@ -87,7 +86,6 @@ public class Frm_LapHD extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbxuat = new javax.swing.JTable();
         btnadd = new javax.swing.JButton();
-        btnsearch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblMAHD = new javax.swing.JLabel();
         cbMaHD = new javax.swing.JComboBox<>();
@@ -159,14 +157,6 @@ public class Frm_LapHD extends javax.swing.JFrame {
         btnadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnaddActionPerformed(evt);
-            }
-        });
-
-        btnsearch.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnsearch.setText("TÌM");
-        btnsearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsearchActionPerformed(evt);
             }
         });
 
@@ -358,8 +348,6 @@ public class Frm_LapHD extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panelLayout.createSequentialGroup()
@@ -420,8 +408,7 @@ public class Frm_LapHD extends javax.swing.JFrame {
                     .addComponent(btnadd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -502,23 +489,6 @@ public class Frm_LapHD extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tbxuatMouseClicked
 
-    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
-        // TODO add your handling code here:
-        HDonDTO hdDTO=new HDonDTO();
-        ChiTietHD_DTO cthdDTO=new ChiTietHD_DTO();
-        hdDTO.setMA_HD(String.valueOf(cbMaHD.getSelectedItem()));
-        cthdDTO.setMA_HD(String.valueOf(cbMaHD.getSelectedItem()));
-        if(cbMaHD.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn Hóa đơn cần tìm!","Thông báo",0);
-        }
-        else{
-                     
-            getHD(hdDTO);
-            getCTHD(cthdDTO);  
-        }
-        //loadAll();
-    }//GEN-LAST:event_btnsearchActionPerformed
-
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         Frm_ThemKH add=new Frm_ThemKH();
@@ -597,7 +567,18 @@ public class Frm_LapHD extends javax.swing.JFrame {
 
     private void cbMaHDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMaHDItemStateChanged
         // TODO add your handling code here:
-        btnsearch.doClick();
+        HDonDTO hdDTO=new HDonDTO();
+        ChiTietHD_DTO cthdDTO=new ChiTietHD_DTO();
+        hdDTO.setMA_HD(String.valueOf(cbMaHD.getSelectedItem()));
+        cthdDTO.setMA_HD(String.valueOf(cbMaHD.getSelectedItem()));
+        if(cbMaHD.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn Hóa đơn cần tìm!","Thông báo",0);
+        }
+        else{
+                     
+            getHD(hdDTO);
+            getCTHD(cthdDTO);  
+        }
     }//GEN-LAST:event_cbMaHDItemStateChanged
 
     private void tf1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf1MouseClicked
@@ -735,7 +716,6 @@ public class Frm_LapHD extends javax.swing.JFrame {
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnadd2;
-    private javax.swing.JButton btnsearch;
     private javax.swing.JComboBox<String> cbMaHD;
     private com.toedter.calendar.JDateChooser dateHD;
     private javax.swing.JButton jButton1;

@@ -401,45 +401,48 @@ public class Frm_QLTaiKhoan extends javax.swing.JFrame {
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
-        TaiKhoanDTO tkDTO=new TaiKhoanDTO();
-        if(tf1.getText().equals("Nhập username")||tf2.getText().equals("Nhập password")){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin username và password.","Thông báo",0);
-        }
-        else{
-            //String username=tf1.getText();
-            tkDTO.setUSERNAME(tf1.getText());
-            tkDTO.setPASSWORD(tf2.getText());
-            String value1=(String) cbManv.getSelectedItem();
-            String maNv="";
-            if(cbManv.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã nhân viên","Thông báo",0);
-            else{
-                maNv=value1.substring(0, 3);
-                tkDTO.setMA_NV(maNv);
-                String value2=(String) cbMaq.getSelectedItem();
-                String maQ="";
-                if(cbMaq.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã quyền","Thông báo",0);
-                else{
-                    maQ=value2.substring(0, 2);
-                    tkDTO.setMA_QUYEN(maQ);
-                    if(rd1.isSelected()) tkDTO.setKHOA(1);
-                    else   tkDTO.setKHOA(0);
-                        
-                    
-                    TaiKhoanBLL tkBLL=new TaiKhoanBLL();
-                    if (tkBLL.updateAccount(tkDTO,username)!=0) {
-                        loadAll();
-                        JOptionPane.showMessageDialog(null, "Sửa tài khoản thành công!","Thông báo",1);
-                        tf1.setText("");
-                        tf2.setText("");
-                        cbManv.setSelectedIndex(0);
-                        cbMaq.setSelectedIndex(0);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Sửa tài khoản thất bại!","Thông báo",0);
+        TaiKhoanDTO tkDTO = new TaiKhoanDTO();
+        if (tf1.getText().equals("Nhập username") || tf2.getText().equals("Nhập password"))
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin username và password.", "Thông báo", 0);
+        else {
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf1.getText().matches(patternMaHH) == false)
+                JOptionPane.showMessageDialog(null, "Username không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            else {
+                tkDTO.setUSERNAME(tf1.getText());
+                tkDTO.setPASSWORD(tf2.getText());
+                String value1 = (String) cbManv.getSelectedItem();
+                String maNv = "";
+                if (cbManv.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã nhân viên", "Thông báo", 0);
+                else {
+                    maNv = value1.substring(0, 3);
+                    tkDTO.setMA_NV(maNv);
+                    String value2 = (String) cbMaq.getSelectedItem();
+                    String maQ = "";
+                    if (cbMaq.getSelectedIndex() == 0)
+                        JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã quyền", "Thông báo", 0);
+                    else {
+                        maQ = value2.substring(0, 2);
+                        tkDTO.setMA_QUYEN(maQ);
+                        if (rd1.isSelected()) {
+                            tkDTO.setKHOA(1);
+                        } else {
+                            tkDTO.setKHOA(0);
+                        }
+                        TaiKhoanBLL tkBLL = new TaiKhoanBLL();
+                        if (tkBLL.updateAccount(tkDTO, username) != 0) {
+                            loadAll();
+                            JOptionPane.showMessageDialog(null, "Sửa tài khoản thành công!", "Thông báo", 1);
+                            tf1.setText("");
+                            tf2.setText("");
+                            cbManv.setSelectedIndex(0);
+                            cbMaq.setSelectedIndex(0);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Sửa tài khoản thất bại!", "Thông báo", 0);
+                        }
                     }
                 }
-                            
-
             }
         }
     }//GEN-LAST:event_btn3ActionPerformed
@@ -451,45 +454,49 @@ public class Frm_QLTaiKhoan extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
-        TaiKhoanDTO tkDTO=new TaiKhoanDTO();
-        if(tf1.getText().equals("Nhập username")||tf2.getText().equals("Nhập password")){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin username và password.","Thông báo",0);
-        }
-        else{
-            tkDTO.setUSERNAME(tf1.getText());
-            tkDTO.setPASSWORD(tf2.getText());
-            String value1=(String) cbManv.getSelectedItem();
-            String maNv="";
-            if(cbManv.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã nhân viên","Thông báo",0);
-            else{
-                maNv=value1.substring(0, 3);
-                tkDTO.setMA_NV(maNv);
-                String value2=(String) cbMaq.getSelectedItem();
-                String maQ="";
-                if(cbMaq.getSelectedIndex()==0) JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã quyền","Thông báo",0);
-                else{
-                    maQ=value2.substring(0, 2);
-                    tkDTO.setMA_QUYEN(maQ);
-                    if(rd1.isSelected()) tkDTO.setKHOA(1);
-                    else   tkDTO.setKHOA(0);
-                    TaiKhoanBLL tkBLL=new TaiKhoanBLL();
-                    if (tkBLL.insertAccount(tkDTO)!=0) {
-                        loadAll();
-                        JOptionPane.showMessageDialog(null, "Thêm tài khoản thành công!","Thông báo",1);
-                        tf1.setText("");
-                        tf2.setText("");
-                        cbManv.setSelectedIndex(0);
-                        cbMaq.setSelectedIndex(0);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Thêm tài khoản thất bại!","Thông báo",0);
+        TaiKhoanDTO tkDTO = new TaiKhoanDTO();
+        if (tf1.getText().equals("Nhập username") || tf2.getText().equals("Nhập password"))
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin username và password.", "Thông báo", 0);
+        else {
+            String patternMaHH = "^[a-zA-Z0-9]+$";
+            if (tf1.getText().matches(patternMaHH) == false)
+                JOptionPane.showMessageDialog(null, "Username không được chứa ký tự đặc biệt!", "Thông báo", 0);
+            else {
+                tkDTO.setUSERNAME(tf1.getText());
+                tkDTO.setPASSWORD(tf2.getText());
+                String value1 = (String) cbManv.getSelectedItem();
+                String maNv = "";
+                if (cbManv.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã nhân viên", "Thông báo", 0);
+                else {
+                    maNv = value1.substring(0, 3);
+                    tkDTO.setMA_NV(maNv);
+                    String value2 = (String) cbMaq.getSelectedItem();
+                    String maQ = "";
+                    if (cbMaq.getSelectedIndex() == 0)
+                        JOptionPane.showMessageDialog(null, "Vui lòng chọn Mã quyền", "Thông báo", 0);
+                    else {
+                        maQ = value2.substring(0, 2);
+                        tkDTO.setMA_QUYEN(maQ);
+                        if (rd1.isSelected())
+                            tkDTO.setKHOA(1);
+                        else {
+                            tkDTO.setKHOA(0);
+                        }
+                        TaiKhoanBLL tkBLL = new TaiKhoanBLL();
+                        if (tkBLL.insertAccount(tkDTO) != 0) {
+                            loadAll();
+                            JOptionPane.showMessageDialog(null, "Thêm tài khoản thành công!", "Thông báo", 1);
+                            tf1.setText("");
+                            tf2.setText("");
+                            cbManv.setSelectedIndex(0);
+                            cbMaq.setSelectedIndex(0);
+                        } else
+                            JOptionPane.showMessageDialog(null, "Thêm tài khoản thất bại!", "Thông báo", 0);
                     }
                 }
-                            
-
             }
         }
-        
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
@@ -523,12 +530,17 @@ public class Frm_QLTaiKhoan extends javax.swing.JFrame {
         // TODO add your handling code here:
         TaiKhoanDTO tkDTO=new TaiKhoanDTO();
         if(cb3.getSelectedIndex()==0){
-             tkDTO.setUSERNAME(tf6.getText());
-            if(tf6.getText().equals("Nhập dữ liệu cần tìm")){
+            if(tf6.getText().equals("Nhập dữ liệu cần tìm"))
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin Username cần tìm!","Thông báo",0);
-            }
-            else      
-                getAccountUS(tkDTO);
+            else{
+                String patternMaHH = "^[a-zA-Z0-9]+$";
+                if (tf6.getText().matches(patternMaHH) == false)
+                    JOptionPane.showMessageDialog(null, "Username không được chứa ký tự đặc biệt!", "Thông báo", 0);
+                else{
+                     tkDTO.setUSERNAME(tf6.getText());
+                     getAccountUS(tkDTO);
+                }
+            }         
         }
         else{
              tkDTO.setMA_NV(tf6.getText());
@@ -538,7 +550,6 @@ public class Frm_QLTaiKhoan extends javax.swing.JFrame {
             else      
                 getAccountManv(tkDTO);
         }
-       
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void tf6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf6KeyPressed

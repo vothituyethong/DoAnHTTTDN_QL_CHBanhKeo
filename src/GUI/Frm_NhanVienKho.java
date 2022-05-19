@@ -213,25 +213,29 @@ public class Frm_NhanVienKho extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        Frm_TTTaiKhoan info=new Frm_TTTaiKhoan();
+        Frm_TTTaiKhoan info = new Frm_TTTaiKhoan();
         info.setVisible(true);
-        info.NVK=this;
-        NhanVienDTO nvDTO=new NhanVienDTO();        
+        info.NVK = this;
+        NhanVienDTO nvDTO = new NhanVienDTO();
         nvDTO.setTEN_NV(lblManv.getText());
-        NhanVienBLL nvBLL=new NhanVienBLL();
+        NhanVienBLL nvBLL = new NhanVienBLL();
         nvDTO.setMA_NV(nvBLL.getMaNV(nvDTO));
-        ArrayList<NhanVienDTO> arr = new ArrayList<NhanVienDTO>();	      
-	 arr = nvBLL.searchNvienMa(nvDTO);		 
-	 for (int i = 0; i < arr.size(); i++) {
-		 nvDTO = arr.get(i);	
-                 info.lbl.setText(nvDTO.getMA_NV());
-		 info.lbl3.setText(nvDTO.getTEN_NV());
-		 info.dateNS.setDate(nvDTO.getNG_SINH());	
-                 info.tf1.setText(nvDTO.getG_TINH());
-		 info.tf4.setText(nvDTO.getSDT());
-                 info.tf5.setText(nvDTO.getD_CHI());
-                 info.lbl2.setText(nvDTO.getCHUC_VU());
-	 }
+        ArrayList<NhanVienDTO> arr = new ArrayList<NhanVienDTO>();
+        arr = nvBLL.searchNvienMa(nvDTO);
+        for (int i = 0; i < arr.size(); i++) {
+            nvDTO = arr.get(i);
+            info.lbl.setText(nvDTO.getMA_NV());
+            info.lbl3.setText(nvDTO.getTEN_NV());
+            info.dateNS.setDate(nvDTO.getNG_SINH());
+            String gender = nvDTO.getG_TINH();
+            if (gender.equals("Nam"))
+                info.rd1.setSelected(true);
+            else
+                info.rd2.setSelected(true);
+            info.tf4.setText(nvDTO.getSDT());
+            info.tf5.setText(nvDTO.getD_CHI());
+            info.lbl2.setText(nvDTO.getCHUC_VU());
+        }
        
         //form2.lbl.setText(tf.getText());
     }//GEN-LAST:event_btn1ActionPerformed
